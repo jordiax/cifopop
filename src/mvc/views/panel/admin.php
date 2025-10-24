@@ -71,8 +71,8 @@
      				la información en la documentación en PDF.</p>
      				
         			<ul class="my2">
-        				<li><a href='/User'>Lista de usuarios (TODO)</a></li>
-        				<li><a href='/User/create'>Nuevo usuario (TODO)</a></li>
+        				<li><a href='/User'>Lista de usuarios</a></li>
+        				<li><a href='/User/create'>Nuevo usuario</a></li>
         			</ul>
         		</section>
         		<?php }else{ ?>

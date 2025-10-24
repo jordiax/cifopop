@@ -166,7 +166,7 @@ class Base implements TemplateInterface{
                     <span class='pc cursiva'>&lt;$user->email&gt;</span>";
                                 
                     // si el usuario es administrador, le informa de ello
-                    if($user->isAdmin())
+                    if(Login::isAdmin())
                         $html .= "
                     <span class='pc'> eres
                         <a class='negrita' href='/Admin' title='Ir al panel del administrador'>administrador</a>.
@@ -253,7 +253,8 @@ class Base implements TemplateInterface{
         
         // enlace a inicio
         $html .= "\t\t<li><a href='/'>Inicio</a></li>\n";
-        
+        $html .= "\t\t<li><a href='/Anuncio'>Listado de anuncios</a></li>\n";
+
         // enlace al panel del administrador
         if(Login::oneRole(ADMIN_PANEL_ROLES))
             $html .= "\t\t<li><a href='/Admin'>Panel del administrador</a></li>\n";

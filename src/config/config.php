@@ -69,11 +69,11 @@ define('AUTOLOAD_DIRECTORIES',  [
  * APLICACIÓN
  * -------------------------------------------------------------*/
 
-define('APP_NAME', 'FastLight Framework 2'); // Título de la aplicación.
+define('APP_NAME', 'CIFOpop'); // Título de la aplicación.
 define('APP_TYPE', 'WEB');       // Tipo de aplicación: WEB o API. 
 
 // para las etiquetas META de autor (en el template)
-define('APP_AUTHOR', 'Robert Sallent');  
+define('APP_AUTHOR', 'Àlex Jordi');  
 
 // para las etiquetas META de redes sociales (en el template)
 define('APP_URL', 'https://fastlight.org');
@@ -147,11 +147,11 @@ define('RESPONSE_CHARSET', 'utf-8'); // charset para las respuestas HTTP
 
 // Parámetros de configuración de la base de datos:
 // define('DB_HOST','localhost');      // Host (configuración habitual)
-define('DB_HOST','mysql');          // Host (configuración para Docker)
+define('DB_HOST','localhost');          // Host (configuración para Docker)
 
-define('DB_USER','fastlight_user'); // Usuario para identificarse con la BDD.
-define('DB_PASS','fastlight_pass'); // Password para identificarse con la BDD.
-define('DB_NAME','fastlight');      // Nombre de la base de datos.
+define('DB_USER','root'); // Usuario para identificarse con la BDD.
+define('DB_PASS','root'); // Password para identificarse con la BDD.
+define('DB_NAME','cifopop');      // Nombre de la base de datos.
 define('DB_PORT',  3306);           // Puerto.
 define('DB_CHARSET','utf8');        // Codificación de caracteres para la conexión.
 
@@ -173,8 +173,6 @@ define('USER_ROLES', [
     'Usuario'       => 'ROLE_USER',
     'Administrador' => 'ROLE_ADMIN',
     'Test'          => 'ROLE_TEST',
-    'API'           => 'ROLE_API',
-    'Estudiante'    => 'ROLE_STUDENT',
     'Bloqueado'     => 'ROLE_BLOCKED'
 ]);
 
@@ -202,12 +200,15 @@ define('BLOCKED_MESSAGE', "Has sido bloqueado por un administrador, si considera
 
 // carpeta para las imágenes de los usuarios
 define('USER_IMAGE_FOLDER','/images/users');
+define('AD_IMAGE_FOLDER','/images/ads');
 
 // imagen por defecto para los usuarios que no tengan
 define('DEFAULT_USER_IMAGE', 'default.png');
+define('DEFAULT_AD_IMAGE', 'default.png');
 
 // tamaño mámximo para la imagen de usuario (en bytes)
 define('USER_IMAGE_MAX_SIZE', 0);
+define('AD_IMAGE_MAX_SIZE', 0);
 
 
 /* -------------------------------------------------------------
