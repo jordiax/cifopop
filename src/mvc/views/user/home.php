@@ -11,7 +11,7 @@
         <script src="/js/modal.js"></script>
         <?= $template->login() ?>
         <?= $template->menu() ?>
-        <?= $template->header('Edición de libro') ?>
+        <?= $template->header('CIFOpop', 'Página principal de  '.$user->displayname) ?>
         <?= $template->breadCrumbs(["$user->displayname"=>null]) ?>
         <?= $template->messages() ?>
         <main>
@@ -33,6 +33,41 @@
                         class="cover enlarge-image" alt="Imagen de perfil de <?= $user->displayname ?>">
                     <figcaption>Imagen de perfil de <?= $user->displayname ?></figcaption>
                 </figure>
+            </section>
+            <section>
+                <div class="grid-list">
+                    <div class="grid-list-header">
+                        <span class="span1">Imagen:</span>
+                        <span class="span1">Título:</span>
+                        <span class="span1">Precio:</span>
+                        <span class="span3">Descripción:</span>
+                        <span class="right">Operaciones</span>                    
+                    </div>
+                    <?php foreach ($anuncios as $anuncio){ 
+                        // dump(AD_IMAGE_FOLDER.'/'.($anuncio->imagen ?? DEFAULT_AD_IMAGE));             
+                        file_exists(substr(AD_IMAGE_FOLDER, 1).'/'.$anuncio->imagen) && !$anuncio->imagen==NULL ? 
+                            $imagen = AD_IMAGE_FOLDER.'/'.$anuncio->imagen :
+                            $imagen = AD_IMAGE_FOLDER.'/'.DEFAULT_AD_IMAGE;
+                    ?>                    
+                    <div class="grid-list-item">
+                        <a href="/Anuncio/show/<?= $anuncio->id ?>" class="span1">
+                            <img src="<?= $imagen ?>" class="table-image" alt="Imagen de <?= $anuncio->titulo ?>">
+                        </a>
+                        <span class="span1"><a href="/Anuncio/show/<?= $anuncio->id ?>" data-label="titulo"><?= $anuncio->titulo ?></a></span>
+                        <span data-label="precio" class="span1"><?= $anuncio->precio.'€' ?></span>
+                        <span data-label="descripcion" class="span3"><?= $anuncio->descripcion ?></span>
+                        <div class="right">
+                            
+                        <a href="/Anuncio/show/<?= $anuncio->id ?>">Ver</a>
+                        <?php if(user() && intval($anuncio->iduser) == intval(user()->id)){ ?>
+                            <a href="/Anuncio/edit/<?= $anuncio->id ?>">Editar</a>
+                            <a href="/Anuncio/delete/<?= $anuncio->id ?>">Eliminar</a>
+                        <?php } ?>
+                        </div>
+                    </div>
+                    
+                <?php } ?>
+                </div>
             </section>
             <div class="left">
                 <form action="/User/ChangePassword" method="post">

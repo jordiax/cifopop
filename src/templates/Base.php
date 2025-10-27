@@ -149,6 +149,7 @@ class Base implements TemplateInterface{
             $html .= "
                 <div class='right' id='login-bar'>
                     <a class='button-light' href='/Login'>Acceso</a>
+                    <a class='button-light' href='/User/create'>Registro</a>
                 </div>";
             
             
@@ -254,6 +255,11 @@ class Base implements TemplateInterface{
         // enlace a inicio
         $html .= "\t\t<li><a href='/'>Inicio</a></li>\n";
         $html .= "\t\t<li><a href='/Anuncio'>Listado de anuncios</a></li>\n";
+        if(Login::role('ROLE_USER'))
+            $html .= "\t\t<li><a href='/Anuncio/create'>Nuevo anuncio</a></li>\n";
+        
+        if(!Login::isAdmin())
+            $html .= "\t\t<li><a href='/Contacto'>Contacto</a></li>\n";
 
         // enlace al panel del administrador
         if(Login::oneRole(ADMIN_PANEL_ROLES))

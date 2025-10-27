@@ -37,11 +37,13 @@
                         <label>Imagen:</label>
                         <input type="file" name="portada" id="file-with-preview" accept="image/*">
                         <br>
-                        <label>Rol:</label>
-                        <select name="roles" id="roles">
-                        <?php foreach(USER_ROLES as $roleName => $roleValue){ ?>
-                            <option value="<?=$roleValue?>"><?=$roleName?></option>
-                        <?php } ?>
+                        <?php if(Login::isAdmin()) { ?>
+                            <label>Rol:</label>
+                            <select name="roles" id="roles">
+                            <?php foreach(USER_ROLES as $roleName => $roleValue){ ?>
+                                <option value="<?=$roleValue?>"><?=$roleName?></option>
+                            <?php } 
+                        } ?>
                         </select>
 
                         <div class="centered mt3">

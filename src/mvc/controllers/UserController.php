@@ -30,7 +30,9 @@ class UserController extends Controller
     {
         Auth::check();
 
-        return view('user/home', ['user'=>Login::user()]);
+        $anuncios = Anuncio::where(['iduser'=>user()->id]);
+
+        return view('user/home', ['user'=>Login::user(), 'anuncios'=>$anuncios]);
     }
 
     /** 
@@ -98,7 +100,7 @@ class UserController extends Controller
     */
     public function create():ViewResponse
     {
-        Auth::admin();
+        // Auth::admin();
 
         return view("user/create");
     }
@@ -110,7 +112,7 @@ class UserController extends Controller
     */
     public function store():RedirectResponse
     {
-        Auth::admin();
+        // Auth::admin();
 
         if(!request()->has('guardar'))
             throw new FormException('No se recibió el formulario.');
@@ -129,7 +131,10 @@ class UserController extends Controller
             if($user->password != $repeat)
                 throw new ValidationException("Las claves no coinciden.");
 
-            $user->addRole('ROLE_USER', $this->request->post('roles'));
+            if(Login::isAdmin())
+                $user->addRole('ROLE_USER', $this->request->post('roles'));
+            else
+                $user->addRole('ROLE_USER');
 
             $user->save();
 
@@ -142,15 +147,26 @@ class UserController extends Controller
                 $user->update();
             }
             
-            $aux = $_POST['password'];
-            
-            $message = "Su usuario se ha creado. Para acceder introduzca su email ($user->email) y su contraseña temporal $aux (recuerde cambiarla desde su página de inicio la primera vez que entre)";
+            if(Login::isAdmin())
+            {
+                $aux = $_POST['password'];
+                
+                $message = "Su usuario se ha creado. Para acceder introduzca su email ($user->email) y su contraseña temporal $aux (recuerde cambiarla desde su página de inicio la primera vez que entre)";
 
-            $email = new Email($user->email, 'Se ha creado su usuario', $message, DEFAULT_EMAIL, DEFAULT_EMAIL_NAME);
-            $email->send();
+                $email = new Email($user->email, 'Se ha creado su usuario', $message, DEFAULT_EMAIL, DEFAULT_EMAIL_NAME);
+                $email->send();
+            }
 
             Session::success("Nuevo usuario $user->displayname creado con éxito.");
-            return redirect("/User/show/$user->id");
+            if(Login::isAdmin())
+                return redirect("/User/show/$user->id");
+            else
+            {
+                $identificado = User::authenticate($user->id, $user->password);
+
+                Login::set($user);
+                return redirect("/User/home");
+            }
         }
         catch(SQLException $e)
         {
