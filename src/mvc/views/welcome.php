@@ -2,8 +2,8 @@
 <html lang="<?= LANGUAGE_CODE ?>">
 	<head>
 		<?= $template->metaData(
-                "Portada del sitio",
-                "Página de inicio del framework PHP FastLight"
+                "Portada",
+                ""
         ) ?>           
         <?= $template->css() ?>
 		
@@ -15,7 +15,7 @@
 	<body>
 		<?= $template->login() ?>
 		<?= $template->menu() ?>
-		<?= $template->header(null, 'Para desarrollo web y APIs RESTFUL') ?>
+		<?= $template->header(null, 'Comprabenta de productos de segunda mano') ?>
 		<?= $template->messages() ?>
 		<?= $template->acceptCookies() ?>
 		

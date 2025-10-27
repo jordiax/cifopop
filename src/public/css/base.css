@@ -45,6 +45,7 @@
   --primary-bg-color: rgb(60, 100, 160);
   --primary-font-color: rgb(255, 255, 255);
   --primary-soft-color: rgb(120, 160, 220);
+  --primary-med-color: rgb(80, 120, 180);
   
   --secondary-bg-color: rgb(60, 160, 100);
   --secondary-font-color: rgb(255, 255, 255);
@@ -731,7 +732,7 @@ dd{
 
 .grid-list-header {
   color: white;
-  background-color: var(--alternative-bg-color);
+  background-color: var(--primary-med-color);
   font-weight: bold;
 }
 
@@ -745,6 +746,11 @@ dd{
 
 .grid-list-item:last-child {
   border-bottom: none;
+}
+
+.grid-list-item form
+{
+	background-color: inherit;
 }
 
 /* Figuras e imágenes -------------------------------------------------------- */
