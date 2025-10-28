@@ -15,7 +15,7 @@
 	<body>
 		<?= $template->login() ?>
 		<?= $template->menu() ?>
-		<?= $template->header(null, 'Comprabenta de productos de segunda mano') ?>
+		<?= $template->header(null, 'Compraventa de productos de segunda mano') ?>
 		<?= $template->messages() ?>
 		<?= $template->acceptCookies() ?>
 		
