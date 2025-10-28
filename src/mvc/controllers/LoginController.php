@@ -82,7 +82,7 @@ class LoginController extends Controller{
         if($identificado->hasRole('ROLE_BLOCKED')){
             
             // flashea el mensaje de error configurado en el fichero de configuración
-            Session::error(BLOCKED_MESSAGE);
+            Session::error($user.'. '.BLOCKED_MESSAGE);
             
             // redirecciona a la URL indicada en el fichero de configuración
             return redirect(BLOCKED_REDIRECT);

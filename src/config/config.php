@@ -113,7 +113,7 @@ define('SMTP', 'localhost');
 define('SMTP_PORT', '25');
 
 // Email y nombre del administrador.
-define('ADMIN_EMAIL', 'admin@fastlight-test.org');
+define('ADMIN_EMAIL', 'wikawa9739@dropeso.com');
 define('ADMIN_EMAIL_NAME', 'App admin');
 
 // Email y nombre para el remitente de envíos genéricos
@@ -227,7 +227,7 @@ define('ALLOW_OTHER_LOGIN_FIELD', false);
 // redirección tras el Login correcto del usuario, no aplica si hay una operación pendiente
 // (por ejemplo, si hace login tras intentar acceder a una página que requiere estar autenticado)
 // será '/User/home' una vez implementado el espacio personal del usuario (en clase)
-define('REDIRECT_AFTER_LOGIN', '/');
+define('REDIRECT_AFTER_LOGIN', '/User/home');
 
 define('LOG_LOGIN_ERRORS', false);                 // guardar errores de login en fichero de log.
 

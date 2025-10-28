@@ -43,7 +43,7 @@
             		    $filtro  // filtro aplicado (null si no hay) - viene del controlador
         		    );
                 if($anuncios){?>
-                    <div class="right">
+                <div class="right">
                 <?= $paginator->stats() ?>
                 </div>
                 <div class="grid-list">

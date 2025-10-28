@@ -22,37 +22,53 @@
 		<main>
     		<h1>Bienvenido</h1>
 
-    		<section id="queesfastlight"  class="flex-container gap2">
-				<div class="flex2 readable" data-event="dblclick">
-            		<h2>¿Qué es FastLight?</h2>
-            		
-            		<p>
-            			<a href="https://github.com/robertsallent/fastlight">FastLight</a>
-            			es un <b>framework PHP</b> rápido y ligero para desarrollar 
-            			<b>aplicaciones web</b> y <b>APIs RESTFUL</b>.
-            		</p>
-            		
-            		<p>Está <b>pensado para docencia</b>, con lo que incorpora las 
-        		   	 características  esenciales para desarrollo de una aplicación web rápida, sólida y fiable, pero no
-        			  incluye algunas funcionalidades complejas que desarrollamos en clase (pero que encontraréis en la documentación). </p>
-        			      		       
-        		    <p>Su modo de empleo está inspirado en <code>Laravel</code> (aunque sus ancestros
-        		       se inspiraban en <code>CodeIgniter</code>), lo que deriva en una transición muy sencilla
-        		       desde <code>FastLight</code> hacia <code>Laravel</code>, <code>Symfony</code> u otros <i>frameworks</i> 
-        		       MVC sobre <code>PHP</code>.</p>	 
-        		       
-        		    <p>La documentación oficial y los manuales están disponibles en 
-    		    </div>   
-    		    
-    		    <figure class="flex1 medium centered centered-block">
-    		    	<img class="square fit with-modal" src="/images/template/phpmysql.png" 
-    		    		 alt="FastLight recomienda PHP8.2 y MySQL8"
-    		    		 title="FastLight recomienda PHP8.2 y MySQL8"
-    		    		 data-caption="La combinación perfecta"
-    		    		 data-description="Se recomienda PHP8.2 y MySQL8"
-    		    	>
-    		    </figure>
-		    </section>
+			<section id="chollos">
+				<h2>Gangas</h2>
+				<p>¡Estas son nuestras gangas! <i><b>Cuidado,</b> ¡nos las quitan de las manos!</i></p>
+				<div class="gallery w100 centered-block my2">
+					<?php 
+					foreach($chollos as $chollo)
+					{ 
+						file_exists(substr(AD_IMAGE_FOLDER, 1).'/'.$chollo->imagen) && !$chollo->imagen == NULL ? 
+                        $imagen = AD_IMAGE_FOLDER.'/'.$chollo->imagen :
+                        $imagen = AD_IMAGE_FOLDER.'/'.DEFAULT_AD_IMAGE;
+						?>
+					<div>
+						<figure class="small card">
+						<img class="square fit with-modal" src="<?=$imagen?>" alt="Imagen">
+						<figcaption><?= $chollo->titulo.', de '.$chollo->autor ?>.</figcaption>
+					</figure>
+					<form method="GET" action="/Anuncio/show/<?= $chollo->id?>" class="no-border centered">
+							<input type="submit" value="Ver" name="aceptar" class="button">
+						</form>	
+					</div>
+					<?php }?>
+				</div>
+			</section>
+
+    		<section id="galeria">
+				<h2>Novedades</h2>
+				<p>Estos son nuestras últimas adquisiciones</p>
+				<div class="gallery w100 centered-block my2">
+					<?php 
+					foreach($anuncios as $anuncio)
+					{ 
+						file_exists(substr(AD_IMAGE_FOLDER, 1).'/'.$anuncio->imagen) && !$anuncio->imagen == NULL ? 
+                        $imagen = AD_IMAGE_FOLDER.'/'.$anuncio->imagen :
+                        $imagen = AD_IMAGE_FOLDER.'/'.DEFAULT_AD_IMAGE;
+						?>
+					<div>
+						<figure class="small card">
+						<img class="square fit with-modal" src="<?=$imagen?>" alt="Imagen">
+						<figcaption><?= $anuncio->titulo.', de '.$anuncio->autor ?>.</figcaption>
+					</figure>
+					<form method="GET" action="/Anuncio/show/<?= $anuncio->id?>" class="no-border centered">
+							<input type="submit" value="Ver" name="aceptar" class="button">
+						</form>	
+					</div>
+					<?php }?>
+				</div>
+			</section>
 		    
 		               
             <section class="warning">

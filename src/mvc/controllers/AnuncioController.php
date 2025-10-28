@@ -149,6 +149,9 @@
             Auth::role('ROLE_USER');
 
             $anuncio = Anuncio::findOrFail($id, 'No se encontró el anuncio');
+           
+            if(user()->id != $anuncio->iduser)
+                throw new AuthException("No uede modificar un anuncio que no sea suyo");
 
             return view('anuncio/edit', ['anuncio' => $anuncio]);
         }
@@ -280,6 +283,9 @@
             Auth::role('ROLE_USER');
 
             $anuncio = Anuncio::findOrFail($id, 'Anuncio no encontrado');
+
+            if(user()->id != $anuncio->iduser)
+                throw new AuthException("No uede eliminar un anuncio que no sea suyo.");
 
             return view('anuncio/delete', ['anuncio' => $anuncio]);
         }
